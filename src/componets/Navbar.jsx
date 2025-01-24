@@ -22,13 +22,14 @@ import { Account } from "@toolpad/core/Account";
 
 const demoSession = {
   user: {
-    name: "Bharat Kashyap",
-    email: "bharatkashyap@outlook.com",
+    name: "Jaydeep Sagathiya",
+    email: "jaydeep4884@gmail.com",
     image: "https://avatars.githubusercontent.com/u/19550456",
   },
 };
 
 const Navbar = () => {
+  // eslint-disable-next-line
   const [session, setSession] = useState(demoSession);
 
   return (
@@ -52,7 +53,7 @@ const Navbar = () => {
               </Link>
             </Box>
 
-            <Box sx={{ width: "55%", maxWidth: "100%" }}>
+            <Box sx={{ width: "50%", maxWidth: "100%" }}>
               <TextField
                 fullWidth
                 placeholder="Search the product"
@@ -79,14 +80,14 @@ const Navbar = () => {
                 }}
                 sx={{
                   "& .MuiOutlinedInput-root": {
-                    borderRadius: "10px", // Rounded corners like in the image
+                    borderRadius: "10px",
                   },
                   "& .MuiInputLabel-root": {
-                    display: "none", // Hides the label
+                    display: "none",
                   },
                   "& .MuiInputBase-input::placeholder": {
-                    fontWeight: "600", // Make placeholder text bold
-                    color: "rgba(0, 0, 0, 0.6)", // Optional: Adjust placeholder color
+                    fontWeight: "600",
+                    color: "rgba(0, 0, 0, 0.6)",
                   },
                 }}
               />

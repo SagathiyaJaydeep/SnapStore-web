@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   List,
@@ -8,11 +8,35 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
-} from "@mui/material"; 
-
-const drawerWidth = 160;
+} from "@mui/material";
+import axios from "axios";
 
 const SideDrawer = () => {
+  let [data, setData] = useState([
+    "tv",
+    "audio",
+    "laptop",
+    "mobile",
+    "gaming",
+    "appliances",
+  ]);
+
+  const showData = async (el) => {
+    try {
+      let res = await axios.get(
+        `https://fakestoreapi.in/api/products/category?type=${el}`
+      );
+      // setData(res.data.products);
+      console.log(res.data.products);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(el);
+  };
+
+  useEffect(() => {
+    showData();
+  }, []);
   return (
     <Box>
       <Drawer
@@ -20,9 +44,8 @@ const SideDrawer = () => {
           flexShrink: 0,
           "& .MuiDrawer-paper": {
             border: "none",
-            width: drawerWidth,
+            width: 160,
             boxSizing: "border-box",
-            position: "fixed",
             marginTop: "66px",
             background:
               "linear-gradient(to bottom,rgb(255, 212, 216),rgb(255, 255, 255))",
@@ -45,30 +68,29 @@ const SideDrawer = () => {
             Categories
           </Typography>
 
-          {["Tv", "Audio", "Laptop", "Mobile", "Gaming", "Appliances"].map(
-            (text) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton
+          {data.map((text) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton
+                onClick={() => showData(text)}
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "#fdeef0",
+                  },
+                }}
+              >
+                <ListItemText
+                  primary={text}
                   sx={{
-                    "&:hover": {
-                      backgroundColor: "#fdeef0",
+                    paddingLeft: "16px",
+                    "& .MuiTypography-root": {
+                      fontSize: "14px",
+                      fontWeight: "550",
                     },
                   }}
-                >
-                  <ListItemText
-                    primary={text}
-                    sx={{
-                      paddingLeft: "16px",
-                      "& .MuiTypography-root": {
-                        fontSize: "14px",
-                        fontWeight: "550",
-                      },
-                    }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            )
-          )}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </Drawer>
     </Box>

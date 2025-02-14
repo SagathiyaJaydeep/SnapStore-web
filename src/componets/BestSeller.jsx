@@ -9,6 +9,7 @@ const BestSeller = () => {
       <Box
         sx={{
           paddingLeft: "20px",
+          display: "flex",
           justifyContent: "stretch",
           flexDirection: "column",
           rowGap: "10px",

@@ -25,7 +25,7 @@ const SideDrawer = () => {
   const showData = async (el) => {
     try {
       let res = await axios.get(
-        `https://fakestoreapi.in/api/products/category?type=${el}`
+        `https://fakestoreapi.in/api/products/category`
       );
       // setData(res.data.products);
       console.log(res.data.products);
@@ -55,7 +55,6 @@ const SideDrawer = () => {
           },
         }}
         variant="permanent"
-        anchor="left"
       >
         <Divider />
         <List sx={{ marginTop: "15px" }}>

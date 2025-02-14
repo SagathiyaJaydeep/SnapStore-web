@@ -29,7 +29,6 @@ const demoSession = {
 };
 
 const Navbar = () => {
-  // eslint-disable-next-line
   const [session, setSession] = useState(demoSession);
 
   return (

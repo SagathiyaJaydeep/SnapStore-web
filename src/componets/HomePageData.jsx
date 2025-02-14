@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, Typography } from "@mui/material";
-// import SliderCmp from "./SliderCmp";
-// import BestSeller from "./BestSeller";
+import { Box, Container, Typography, Breadcrumbs, Link } from "@mui/material";
+import SliderCmp from "./SliderCmp";
+import BestSeller from "./BestSeller";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -28,15 +28,22 @@ const HomePageData = () => {
   return (
     <>
       <Container maxWidth="xl">
-        <Box sx={{ padding: "20px 0" }}>
-          <Typography
-            sx={{ marginBottom: "15px", fontSize: "14px", color: "#334155" }}
-          >
-            HOT SALE
-          </Typography>
+        <Box
+          sx={{
+            padding: "20px 0",
+            position: "absolute",
+            top: 60,
+            right: 30,
+            left: 190,
+            zIndex: -1,
+          }}
+        >
+          <Breadcrumbs aria-label="breadcrumb">
+            <Typography sx={{ color: "text.primary",fontWeight:"900" }}>Breadcrumbs</Typography>
+          </Breadcrumbs>
 
           {/* HERO TOP DATA */}
-          {/* <Box
+          <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
@@ -45,7 +52,7 @@ const HomePageData = () => {
           >
             <SliderCmp />
             <BestSeller />
-          </Box> */}
+          </Box>
 
           {/* PRODUCTS */}
           <table border={1} width={"100%"}>
@@ -75,18 +82,15 @@ const HomePageData = () => {
                   <td>{el.title}</td>
                   <td>
                     <img
-                      style={{ height: "100px", width: "100px" }}
+                      style={{
+                        height: "100px",
+                        width: "100px",
+                        backgroundSize: "cover",
+                      }}
                       src={el.image}
                       alt="image"
                     />
                   </td>
-
-                  {/* <td>
-                <button onClick={() => deleteData(el.id)}>Delete</button>
-              </td>
-              <td>
-                <button onClick={() => updateData(el.id)}>Update</button>
-              </td> */}
                 </tr>
               ))}
             </tbody>

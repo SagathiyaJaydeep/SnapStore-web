@@ -4,6 +4,7 @@ import SliderCmp from "./SliderCmp";
 import BestSeller from "./BestSeller";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import ProductList from "./ProductList";
 
 const HomePageData = () => {
   let [data, setData] = useState([]);
@@ -38,8 +39,12 @@ const HomePageData = () => {
             zIndex: -1,
           }}
         >
-          <Breadcrumbs aria-label="breadcrumb">
-            <Typography sx={{ color: "text.primary",fontWeight:"900" }}>Breadcrumbs</Typography>
+          <Breadcrumbs aria-label="breadcrumb" sx={{ marginBottom: "16px" }}>
+            <Typography
+              sx={{ fontSize: "14px", color: "black", fontWeight: "600" }}
+            >
+              HOT SALE
+            </Typography>
           </Breadcrumbs>
 
           {/* HERO TOP DATA */}
@@ -55,7 +60,7 @@ const HomePageData = () => {
           </Box>
 
           {/* PRODUCTS */}
-          <table border={1} width={"100%"}>
+          {/* <table border={1} width={"100%"}>
             <thead>
               <tr>
                 <th scope="col">No</th>
@@ -94,7 +99,8 @@ const HomePageData = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> */}
+          <ProductList />
         </Box>
         <Toaster />
       </Container>

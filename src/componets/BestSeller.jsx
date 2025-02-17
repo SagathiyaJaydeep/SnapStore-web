@@ -13,7 +13,9 @@ const BestSeller = () => {
           justifyContent: "stretch",
           flexDirection: "column",
           rowGap: "10px",
-          borderLeft:"1px solid #ccc"
+          borderLeft: "1px solid transparent",
+          borderImage:
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0), #ddd, rgba(0, 0, 0, 0)) 5",
         }}
       >
         <Typography sx={{ color: "#A1A1AA", fontSize: "10px" }}>

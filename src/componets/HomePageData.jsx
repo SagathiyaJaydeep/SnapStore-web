@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, Typography, Breadcrumbs, Link } from "@mui/material";
+import { Box, Container, Typography, Breadcrumbs } from "@mui/material";
 import SliderCmp from "./SliderCmp";
 import BestSeller from "./BestSeller";
 import axios from "axios";

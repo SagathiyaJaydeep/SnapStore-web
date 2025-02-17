@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
 
 const SideDrawer = () => {
   let [data, setData] = useState([
@@ -24,17 +23,11 @@ const SideDrawer = () => {
 
   const showData = async (el) => {
     try {
-      let res = await axios.get(
-        `https://fakestoreapi.in/api/products/category`
-      );
+      await axios.get(`https://fakestoreapi.in/api/products/category`);
       // setData(res.data.products);
-      console.log(res.data.products);
-      toast.success("Data Fetch !!");
     } catch (error) {
       console.log(error);
-      toast.error("Data is Not Fetch !!");
     }
-    console.log(el);
   };
 
   useEffect(() => {
@@ -95,7 +88,6 @@ const SideDrawer = () => {
           ))}
         </List>
       </Drawer>
-      <Toaster />
     </Box>
   );
 };

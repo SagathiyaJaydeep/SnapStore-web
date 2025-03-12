@@ -1,12 +1,36 @@
-import { Box } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { styled } from "@mui/system";
 import { Tabs } from "@mui/base/Tabs";
 import { TabsList as BaseTabsList } from "@mui/base/TabsList";
 import { TabPanel as BaseTabPanel } from "@mui/base/TabPanel";
 import { Tab as BaseTab, tabClasses } from "@mui/base/Tab";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 function ProductList() {
+  const [allProductData, setAllProductData] = useState([]);
+  const showAllProductData = async () => {
+    try {
+      let res = await axios.get("https://fakestoreapi.in/api/products");
+      setAllProductData(res.data.products);
+      console.log(res.data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    showAllProductData();
+  }, []);
   return (
     <>
       <Box sx={{ marginTop: "32px" }}>
@@ -18,8 +42,38 @@ function ProductList() {
             <Tab value={3}>Expensive</Tab>
             <Tab value={4}>Sale</Tab>
           </TabsList>
-          <TabPanel value={0}>All Product</TabPanel>
-          <TabPanel value={1}>Popular Product</TabPanel>
+
+          {/* Tab1 : AllProducts */}
+          <TabPanel value={0}>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                flexWrap: "wrap",
+                gap: "1.25rem",
+              }}
+            >
+              {allProductData.map((el, i) => (
+                <Card key={i} sx={{ maxWidth: 245 }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="244"
+                      image={el.image}
+                      alt="green iguana"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom component="div">
+                        {el.title.slice(0, 30)}...
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              ))}
+            </Box>
+          </TabPanel>
+
+          <TabPanel value={1}>lorem*50</TabPanel>
           <TabPanel value={2}>Cheap Product</TabPanel>
           <TabPanel value={3}>Expensive Product</TabPanel>
           <TabPanel value={4}>Sale</TabPanel>
@@ -64,7 +118,6 @@ const TabPanel = styled(BaseTabPanel)(
   padding: 12px 8px;
   border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
   border-radius: 12px;
-  opacity: 0.6;
   `
 );
 

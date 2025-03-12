@@ -14,7 +14,7 @@ const HomePageData = () => {
         "https://fakestoreapi.in/api/products/category?type=mobile"
       );
       setData(res.data.products);
-      console.log(res.data.products);
+      // console.log(res.data.products);
       toast.success("Data Fetch Successfully !!");
     } catch (error) {
       console.log(error);

@@ -54,18 +54,39 @@ function ProductList() {
               }}
             >
               {allProductData.map((el, i) => (
-                <Card key={i} sx={{ maxWidth: 245 }}>
+                <Card
+                  key={i}
+                  sx={{
+                    maxWidth: 245,
+                    boxShadow: "none",
+                    backgroundColor: "transparent",
+                  }}
+                >
                   <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      height="244"
-                      image={el.image}
-                      alt="green iguana"
-                    />
+                    <Box
+                      sx={{
+                        borderRadius: "0 0 12px 12px ",
+                        boxShadow:
+                          "0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1)",
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        image={el.image}
+                        alt={el.title}
+                        sx={{
+                          width: 244,
+                          height: 244,
+                          objectFit: "contain",
+                          transition: "transform 0.3s ease-in-out",
+                          "&:hover": {
+                            transform: "scale(1.07)",
+                          },
+                        }}
+                      />
+                    </Box>
                     <CardContent>
-                      <Typography gutterBottom component="div">
-                        {el.title.slice(0, 30)}...
-                      </Typography>
+                      <Typography>{el.title.slice(0, 30)}...</Typography>
                     </CardContent>
                   </CardActionArea>
                 </Card>
@@ -82,19 +103,6 @@ function ProductList() {
     </>
   );
 }
-
-const grey = {
-  50: "#F3F6F9",
-  100: "#E5EAF2",
-  200: "#DAE2ED",
-  300: "#C7D0DD",
-  400: "#B0B8C4",
-  500: "#9DA8B7",
-  600: "#6B7A90",
-  700: "#434D5B",
-  800: "#303740",
-  900: "#1C2025",
-};
 
 const Tab = styled(BaseTab)`
   font-weight: 600;
@@ -116,7 +124,6 @@ const TabPanel = styled(BaseTabPanel)(
   ({ theme }) => `
   font-size: 14px;
   padding: 12px 8px;
-  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
   border-radius: 12px;
   `
 );
